@@ -1,0 +1,38 @@
+[
+	{
+		"id": 1,
+		"name": "Aarav Sharma",
+		"surname": "Sharma",
+		"email": "aarav.sharma@example.com",
+		"role": "member",
+		"issuedbooks": [],
+		"subscription date": null,
+		"return date": null,
+		"subscription type": null,
+		"issued date": null
+	},
+	{
+		"id": 2,
+		"name": "Maya Patel",
+		"surname": "Patel",
+		"email": "maya.patel@example.com",
+		"role": "librarian",
+		"issuedbooks": [],
+		"subscription date": null,
+		"return date": null,
+		"subscription type": null,
+		"issued date": null
+	},
+	{
+		"id": 3,
+		"name": "raj Patel",
+		"surname": "Patel",
+		"email": "raj.patel@example.com",
+		"role": "member",
+		"issuedbooks": [],
+		"subscription date": null,
+		"return date": null,
+		"subscription type": null,
+		"issued date": null
+	}
+]
