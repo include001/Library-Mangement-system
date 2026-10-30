@@ -1,47 +1,41 @@
-[
+{
+	"books":[
 	{
 		"id": 1,
 		"title": "The Great Gatsby",
 		"author": "F. Scott Fitzgerald",
 		"genre": "Classic Fiction",
-		"publishedYear": 1925,
-		"isbn": "9780743273565",
-		"availableCopies": 4
+		"publishedYear": 1925
+		
 	},
 	{
 		"id": 2,
 		"title": "Pride and Prejudice",
 		"author": "Jane Austen",
 		"genre": "Romance",
-		"publishedYear": 1813,
-		"isbn": "9780141439518",
-		"availableCopies": 3
+		"publishedYear": 1813
+		
 	},
 	{
 		"id": 3,
 		"title": "1984",
 		"author": "George Orwell",
 		"genre": "Dystopian Fiction",
-		"publishedYear": 1949,
-		"isbn": "9780451524935",
-		"availableCopies": 5
+		"publishedYear": 1949
 	},
 	{
 		"id": 4,
 		"title": "To Kill a Mockingbird",
 		"author": "Harper Lee",
 		"genre": "Historical Fiction",
-		"publishedYear": 1960,
-		"isbn": "9780061120084",
-		"availableCopies": 2
+		"publishedYear": 1960
 	},
 	{
 		"id": 5,
 		"title": "The Hobbit",
 		"author": "J. R. R. Tolkien",
 		"genre": "Fantasy",
-		"publishedYear": 1937,
-		"isbn": "9780547928227",
-		"availableCopies": 6
+		"publishedYear": 1937
 	}
 ]
+}
