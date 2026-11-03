@@ -1,36 +1,37 @@
 const express = require("express");
 
-const {users} = require('./data/users.json')
+const dotenv = require("dotenv");
 
-
-// importing the routes
+const DbConnection = require('./databaseConnection');
 const usersRouter = require("./routes/users");
 const booksRouter = require("./routes/books");
 
+dotenv.config();
 
- const app = express();
- const PORT = 8081;
- app.use(express.json());
+const app = express();
+const PORT = 8081;
 
- app.get("/",(req,res)=>{
+app.use(express.json());
+
+app.get("/", (req, res) => {
     res.status(200).json({
         message: "Home Page :-)"
-    })
- })
+    });
+});
 
-app.use("/users",usersRouter);
-app.use("/books",booksRouter);
+app.use("/users", usersRouter);
+app.use("/books", booksRouter);
 
+const startServer = async () => {
+    try {
+        await DbConnection();
+        app.listen(PORT, () => {
+            console.log(`Server is up and running on http://localhost:${PORT}`);
+        });
+    } catch (error) {
+        console.error('Failed to start the server:', error.message);
+        process.exit(1);
+    }
+};
 
-
-
-//  app.all ('*',(req,res)=>{
-//     res.status(500).json({
-//         message:"Not Built Yet"
-//     })
-//  })
-
-
- app.listen(PORT,()=>{
-    console.log(`Server is up and running on  http://localhost:${PORT}`);
-})
+startServer();

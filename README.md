@@ -54,3 +54,27 @@ GET: Get all issued books with their fine amount
   npm i express
   npm i nodemon --save-dev
   
+
+
+  npm run --> to start to appli
+
+  to restore node_module and package-lock.json -->npm i/ npm install 
+
+
+  npm i mongoose
+
+  npm install mongodb
+
+
+ mongodb+srv://raj360773_db_user:<db_password>@cluster0.5ouvnhp.mongodb.net/
+
+ npm i dotenv
+
+
+ ## MVC Arectecture
+ >> M: Model (Structure of our MongoDb)
+ >> V:View (Frontend)
+ >> C: Controllers (Brain/Logic of a route)
+ 
+
+ ## DTO (data transfer object)
