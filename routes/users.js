@@ -1,6 +1,8 @@
 const express = require("express");
 const {users} = require("../data/users.json");
 
+const { getAllUsers, getSingleUserById, createUser, UpdateUserById, delteUserById } = require("../controllers/user-controller");
+
 const router = express.Router();
 /**
  * Route: / user
@@ -12,12 +14,14 @@ const router = express.Router();
  * 
  */
 
-router.get('/',(req,res)=>{
-    res.status(200).json({
-        success: true,
-        data:users
-    })
-})
+// router.get('/',(req,res)=>{
+//     res.status(200).json({
+//         success: true,
+//         data:users
+//     })
+// })
+router.get('/', getAllUsers);
+
 
 /**
  * Route: / user/:id
@@ -28,20 +32,22 @@ router.get('/',(req,res)=>{
  * 
  * 
  */
-router.get('/:id',(req,res)=>{
-    const{id}=req.params;
-    const user = users.find((each)=>each.id === Number(id))
-    if(!user){
-      return  res.status(404).json({
-            success: false,
-            message: `User Not Found for id: ${id}`
-        })
-    }
-    res.status(200).json({
-        success: true,
-        data:user
-    })
-})
+// router.get('/:id',(req,res)=>{
+//     const{id}=req.params;
+//     const user = users.find((each)=>each.id === Number(id))
+//     if(!user){
+//       return  res.status(404).json({
+//             success: false,
+//             message: `User Not Found for id: ${id}`
+//         })
+//     }
+//     res.status(200).json({
+//         success: true,
+//         data:user
+//     })
+// })
+
+router.get('/:id' ,getSingleUserById)
 
 /**
  * Route: / users
@@ -65,37 +71,39 @@ router.get('/:id',(req,res)=>{
 	// 	"subscription type": null,
 	// 	"issued date": null
 
-    router.post('/',(req,res)=>{
+//     router.post('/',(req,res)=>{
 
-        // req.body should have the following fields 
-    const {id, name,surname, email, subscriptionType, subscriptionDate} =req.body;
-    // check if all the required fieds are present
-    if(!id || !name || !surname || !email || !subscriptionDate || !subscriptionType){
-        return res.status(400).json({
-            success:false,
-            message:"Please provide all the reqired fileds"
-        })
-    }
-    // Check if the user already exissts
-    const user = users.find((each)=>each.id === id)
-    if (user){
-        return res.status(409).json({
-            success:false,
-            message:`User Already Exists with id : ${id}`
-        })
-    }
+//         // req.body should have the following fields 
+//     const {id, name,surname, email, subscriptionType, subscriptionDate} =req.body;
+//     // check if all the required fieds are present
+//     if(!id || !name || !surname || !email || !subscriptionDate || !subscriptionType){
+//         return res.status(400).json({
+//             success:false,
+//             message:"Please provide all the reqired fileds"
+//         })
+//     }
+//     // Check if the user already exissts
+//     const user = users.find((each)=>each.id === id)
+//     if (user){
+//         return res.status(409).json({
+//             success:false,
+//             message:`User Already Exists with id : ${id}`
+//         })
+//     }
 
-    // if all checks pass, create the user 
-    // and push it to the users array
-    users.push({id,name,surname,email,subscriptionDate,subscriptionType
-    })
+//     // if all checks pass, create the user 
+//     // and push it to the users array
+//     users.push({id,name,surname,email,subscriptionDate,subscriptionType
+//     })
 
-    res.status(201).json({
-        success: true,
-        message:"User Created Successfully"
-    })
-})
+//     res.status(201).json({
+//         success: true,
+//         message:"User Created Successfully"
+//     })
+// })
 
+
+router.post('/', createUser);
 
 
 /**
@@ -108,38 +116,40 @@ router.get('/:id',(req,res)=>{
  * 
  */
 
-router.put('/:id', (req, res) => {
-    const { id } = req.params;
-    const { data } = req.body;
+// router.put('/:id', (req, res) => {
+//     const { id } = req.params;
+//     const { data } = req.body;
 
-    const user = users.find(
-        (each) => each.id === Number(id)
-    );
+//     const user = users.find(
+//         (each) => each.id === Number(id)
+//     );
 
-    if (!user) {
-        return res.status(404).json({
-            success: false,
-            message: `User not found for ID ${id}`
-        });
-    }
+//     if (!user) {
+//         return res.status(404).json({
+//             success: false,
+//             message: `User not found for ID ${id}`
+//         });
+//     }
 
-    const updatedUser = users.map((each) => {
-        if (each.id === Number(id)) {
-            return {
-                ...each,
-                ...data
-            };
-        }
+//     const updatedUser = users.map((each) => {
+//         if (each.id === Number(id)) {
+//             return {
+//                 ...each,
+//                 ...data
+//             };
+//         }
 
-        return each;
-    });
+//         return each;
+//     });
 
-    res.status(200).json({
-        success: true,
-        data: updatedUser,
-        message: "User updated successfully"
-    });
-});
+//     res.status(200).json({
+//         success: true,
+//         data: updatedUser,
+//         message: "User updated successfully"
+//     });
+// });
+
+router.put('/:id',UpdateUserById)
 
 
 /**
@@ -151,27 +161,28 @@ router.put('/:id', (req, res) => {
  * 
  * 
  */
-router.delete('/:id', (req, res) => {
-    const { id } = req.params;
-    const userIndex = users.findIndex(
-        (each) => each.id === Number(id)
-    );
+// router.delete('/:id', (req, res) => {
+//     const { id } = req.params;
+//     const userIndex = users.findIndex(
+//         (each) => each.id === Number(id)
+//     );
 
-    if (userIndex === -1) {
-        return res.status(404).json({
-            success: false,
-            message: `User not found for ID ${id}`
-        });
-    }
+//     if (userIndex === -1) {
+//         return res.status(404).json({
+//             success: false,
+//             message: `User not found for ID ${id}`
+//         });
+//     }
 
-    const deletedUser = users.splice(userIndex, 1)[0];
+//     const deletedUser = users.splice(userIndex, 1)[0];
 
-    res.status(200).json({
-        success: true,
-        data: deletedUser,
-        message: "User deleted successfully"
-    });
-});
+//     res.status(200).json({
+//         success: true,
+//         data: deletedUser,
+//         message: "User deleted successfully"
+//     });
+// });
 
+router.delete('/:id',delteUserById)
 
 module.exports = router;
